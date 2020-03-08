@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 public class Main_page extends javax.swing.JFrame {
-   
+
     Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
-      
+
     public Main_page() {
         initComponents();
         showTableData();
@@ -156,6 +156,7 @@ public class Main_page extends javax.swing.JFrame {
             }
         });
 
+//pippip
         btn_update1.setBackground(new java.awt.Color(51, 153, 255));
         btn_update1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_update1.setForeground(new java.awt.Color(255, 255, 255));
@@ -523,9 +524,9 @@ public class Main_page extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_addActionPerformed
 
-    
 
-    
+
+
     private void btn_update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_update1ActionPerformed
 
         JOptionPane.showMessageDialog(null, "Developed by Mohammad Abu Yousuf");
@@ -533,13 +534,13 @@ public class Main_page extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_update1ActionPerformed
 
     private void btn_teacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_teacherActionPerformed
-     
+
         showTableDataTeacher();
-        
+
     }//GEN-LAST:event_btn_teacherActionPerformed
 
     private void btn_studentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_studentActionPerformed
-        showTableDataStudent();        
+        showTableDataStudent();
     }//GEN-LAST:event_btn_studentActionPerformed
 
     private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
@@ -574,8 +575,8 @@ public class Main_page extends javax.swing.JFrame {
         try {
             String sql="UPDATE data_all SET Name=?,Phone=?,Email=?,Job=?,Address=? WHERE Name=?";
             con=DriverManager.getConnection("jdbc:mysql://localhost:8080/contact_manager_dbms","root","");
-            pst=con.prepareStatement(sql);           
-            pst.setString(6,txt_name.getText());            
+            pst=con.prepareStatement(sql);
+            pst.setString(6,txt_name.getText());
             pst.setString(1,txt_name.getText());
             pst.setString(2,txt_phone.getText());
             pst.setString(3,txt_email.getText());
@@ -608,7 +609,7 @@ public class Main_page extends javax.swing.JFrame {
             jTable_contact_info.setModel(DbUtils.resultSetToTableModel(rs));
           // jTextField1.setText(null);
             pst.close();
-            
+
 
 
         } catch (Exception e) {
@@ -626,21 +627,21 @@ public class Main_page extends javax.swing.JFrame {
     private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
     // write statement to print the contact info from the table
 	try {
-					
+
             boolean complete = jTable_contact_info.print();
             if(complete) {
-                JOptionPane.showMessageDialog(null, "PRINTED");	
-            }	
+                JOptionPane.showMessageDialog(null, "PRINTED");
+            }
         } catch (PrinterException | HeadlessException e) {
             JOptionPane.showConfirmDialog(null, e);
-					
-	}			
-			
-        
-        
+
+	}
+
+
+
     }//GEN-LAST:event_btn_printActionPerformed
 
-    
+
      public void showTableDataTeacher(){
         try {
             con=DriverManager.getConnection("jdbc:mysql://localhost:8080/contact_manager_dbms","root","");
@@ -648,12 +649,12 @@ public class Main_page extends javax.swing.JFrame {
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             jTable_contact_info.setModel(DbUtils.resultSetToTableModel(rs));
-        
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
-        
+
+
     }
       public void showTableDataStudent(){
         try {
@@ -662,17 +663,17 @@ public class Main_page extends javax.swing.JFrame {
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             jTable_contact_info.setModel(DbUtils.resultSetToTableModel(rs));
-        
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }        
+        }
     }
-     /* 
+     /*
      public void createDB(){
          CREATE DATABASE contact_manager_dbms;
-     } 
+     }
     */
-      
+
     public void showTableData(){
         try {
             con=DriverManager.getConnection("jdbc:mysql://localhost:8080/contact_manager_dbms","root","");
@@ -680,22 +681,22 @@ public class Main_page extends javax.swing.JFrame {
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             jTable_contact_info.setModel(DbUtils.resultSetToTableModel(rs));
-        
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-     public void clearFields() {  
+
+     public void clearFields() {
         txt_name.setText(null);
         txt_phone.setText(null);
         txt_email.setText(null);
         txt_job.setText(null);
         txt_address.setText(null);
-            
-    }   
+
+    }
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main_page().setVisible(true);
